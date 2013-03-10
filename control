@@ -2,9 +2,9 @@ Package: ws.hbang.ncpad
 Name: NCPad
 Depends: mobilesubstrate
 Pre-Depends: firmware (>= 5.0), gsc.ipad
-Version: 1.0
+Version: 1.0.1
 Architecture: iphoneos-arm
 Description: Full sized notification banners for iPad
-Maintainer: thekirbylover
-Author: thekirbylover
+Maintainer: HASHBANG Productions <ncpad@hbang.ws>
+Author: HASHBANG Productions <ncpad@hbang.ws>
 Section: Tweaks
