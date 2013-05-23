@@ -11,14 +11,14 @@
 
 %group HBNPiOS5
 %hook SBBulletinBannerController
--(CGRect)_normalBannerFrameForOrientation:(int)orientation {
+- (CGRect)_normalBannerFrameForOrientation:(int)orientation {
 	CGRect frame = %orig;
 	frame.origin.x = 0;
 	frame.size.width = HBNPWidthForOrient(orientation);
 	return frame;
 }
 
--(CGRect)_currentBannerFrameForOrientation:(int)orientation {
+- (CGRect)_currentBannerFrameForOrientation:(int)orientation {
 	CGRect frame = %orig;
 	frame.origin.x = 0;
 	frame.size.width = HBNPWidthForOrient(orientation);
@@ -29,14 +29,14 @@
 
 %group HBNPiOS6
 %hook SBBannerController
--(CGRect)_normalBannerFrameForOrientation:(int)orientation {
+- (CGRect)_normalBannerFrameForOrientation:(int)orientation {
 	CGRect frame = %orig;
 	frame.origin.x = 0;
 	frame.size.width = HBNPWidthForOrient(orientation);
 	return frame;
 }
 
--(CGRect)_currentBannerFrameForOrientation:(int)orientation {
+- (CGRect)_currentBannerFrameForOrientation:(int)orientation {
 	CGRect frame = %orig;
 	frame.origin.x = 0;
 	frame.size.width = HBNPWidthForOrient(orientation);
