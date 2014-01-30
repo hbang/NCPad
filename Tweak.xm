@@ -1,54 +1,55 @@
-/**
- * NCPad - full size notification banners for iPad
- *
- * By Ad@m <http://adam.hbang.ws>
- * Licensed under the MIT License <http://adam.mit-license.org>
- */
+#import <version.h>
 
-#define HBNPWidthForOrient(orient) (UIDeviceOrientationIsLandscape(orient) \
+#define WIDTH_FOR_ORIENTATION(orientation) (UIInterfaceOrientationIsLandscape(orientation) \
 	? [UIScreen mainScreen].bounds.size.height \
 	: [UIScreen mainScreen].bounds.size.width)
 
-%group HBNPiOS5
+%group SteveJobs
 %hook SBBulletinBannerController
-- (CGRect)_normalBannerFrameForOrientation:(int)orientation {
+
+- (CGRect)_normalBannerFrameForOrientation:(UIInterfaceOrientation)orientation {
 	CGRect frame = %orig;
 	frame.origin.x = 0;
-	frame.size.width = HBNPWidthForOrient(orientation);
+	frame.size.width = WIDTH_FOR_ORIENTATION(orientation);
 	return frame;
 }
 
-- (CGRect)_currentBannerFrameForOrientation:(int)orientation {
+- (CGRect)_currentBannerFrameForOrientation:(UIInterfaceOrientation)orientation {
 	CGRect frame = %orig;
 	frame.origin.x = 0;
-	frame.size.width = HBNPWidthForOrient(orientation);
+	frame.size.width = WIDTH_FOR_ORIENTATION(orientation);
 	return frame;
 }
+
 %end
 %end
 
-%group HBNPiOS6
+%group ScottForstall
 %hook SBBannerController
-- (CGRect)_normalBannerFrameForOrientation:(int)orientation {
+
+- (CGRect)_normalBannerFrameForOrientation:(UIInterfaceOrientation)orientation {
 	CGRect frame = %orig;
 	frame.origin.x = 0;
-	frame.size.width = HBNPWidthForOrient(orientation);
+	frame.size.width = WIDTH_FOR_ORIENTATION(orientation);
 	return frame;
 }
 
-- (CGRect)_currentBannerFrameForOrientation:(int)orientation {
+- (CGRect)_currentBannerFrameForOrientation:(UIInterfaceOrientation)orientation {
 	CGRect frame = %orig;
 	frame.origin.x = 0;
-	frame.size.width = HBNPWidthForOrient(orientation);
+	frame.size.width = WIDTH_FOR_ORIENTATION(orientation);
 	return frame;
 }
+
 %end
 %end
 
 %ctor {
-	if (kCFCoreFoundationVersionNumber >= 793) {
-		%init(HBNPiOS6);
+	%init;
+
+	if (IS_IOS_OR_NEWER(iOS_6_0)) {
+		%init(ScottForstall);
 	} else {
-		%init(HBNPiOS5);
+		%init(SteveJobs);
 	}
 }
