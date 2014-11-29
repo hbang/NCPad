@@ -11,28 +11,8 @@
 
 @end
 
-%group SteveJobs
+%group JobsAndForstall
 %hook SBBulletinBannerController
-
-- (CGRect)_normalBannerFrameForOrientation:(UIInterfaceOrientation)orientation {
-	CGRect frame = %orig;
-	frame.origin.x = 0;
-	frame.size.width = WIDTH_FOR_ORIENTATION(orientation);
-	return frame;
-}
-
-- (CGRect)_currentBannerFrameForOrientation:(UIInterfaceOrientation)orientation {
-	CGRect frame = %orig;
-	frame.origin.x = 0;
-	frame.size.width = WIDTH_FOR_ORIENTATION(orientation);
-	return frame;
-}
-
-%end
-%end
-
-%group ScottForstall
-%hook SBBannerController
 
 - (CGRect)_normalBannerFrameForOrientation:(UIInterfaceOrientation)orientation {
 	CGRect frame = %orig;
@@ -84,9 +64,8 @@
 		%init(CraigFederighi);
 	} else if (IS_IOS_OR_NEWER(iOS_7_0)) {
 		%init(JonyIve);
-	} else if (IS_IOS_OR_NEWER(iOS_6_0)) {
-		%init(ScottForstall);
 	} else {
-		%init(SteveJobs);
+		Class bannerControllerClass = %c(SBBannerController) ?: %c(SBBulletinBannerController);
+		%init(JobsAndForstall, SBBulletinBannerController = bannerControllerClass);
 	}
 }
